@@ -1,6 +1,6 @@
 export interface IPlacesState {
     isLoading: boolean;
-    userLocation?: [number, number]; // [lat, lng]
+    userLocation?: [number, number]; // [lng, lat]
 }
 
 function state(): IPlacesState {

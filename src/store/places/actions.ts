@@ -4,8 +4,16 @@ import { IStateInterface } from '../index';
 
 
 const actions: ActionTree<IPlacesState, IStateInterface> = {
-    someAction( /*{ commit }, payload  */ ) {
-        // a line to prevent linter errors
+    getInitialLocation( { commit } ) {
+
+        navigator.geolocation.getCurrentPosition(
+            ({ coords }) => commit('setLngLat', coords),
+            (error) => {
+                console.log(error);
+                throw new Error('Could not get your location')
+            }
+        )
+        
     }
 }
 
