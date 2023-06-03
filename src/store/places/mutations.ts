@@ -1,8 +1,8 @@
 import { MutationTree } from 'vuex';
-import { IExampleStateInterface } from './state';
+import { IPlacesState } from './state';
 
 
-const mutation: MutationTree<IExampleStateInterface> = {
+const mutation: MutationTree<IPlacesState> = {
     someMutation( /* state: ExampleStateInterface */) {
         // a line to prevent linter errors
     }

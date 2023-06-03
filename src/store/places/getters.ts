@@ -1,10 +1,10 @@
 
 import { GetterTree } from 'vuex';
-import { IExampleStateInterface } from './state';
+import { IPlacesState } from './state';
 import { IStateInterface } from '../index';
 
 
-const getters: GetterTree<IExampleStateInterface, IStateInterface> = {
+const getters: GetterTree<IPlacesState, IStateInterface> = {
     someGetter( /* state */ ) {
         // return true;
     }

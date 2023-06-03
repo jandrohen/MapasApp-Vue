@@ -1,13 +1,13 @@
 import { Module } from 'vuex';
 import { IStateInterface } from '../index';
 
-import state, { IExampleStateInterface } from './state';
+import state, { IPlacesState } from './state';
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
 
-const exampleModule: Module<IExampleStateInterface, IStateInterface> = {
+const exampleModule: Module<IPlacesState, IStateInterface> = {
     namespaced: true,
     actions,
     getters,
