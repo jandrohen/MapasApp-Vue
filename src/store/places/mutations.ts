@@ -3,8 +3,8 @@ import { IPlacesState } from './state';
 
 
 const mutation: MutationTree<IPlacesState> = {
-    setLngLat( state: IPlacesState, coords ) {
-        state.userLocation = coords
+    setLngLat( state: IPlacesState, { lng, lat }: { lng: number, lat: number} ) {        
+        state.userLocation = [lng, lat];
         state.isLoading = false;
     }
 }
