@@ -17,12 +17,21 @@ export default defineComponent({
 
             await Promise.resolve();
 
-            new Mapboxgl.Map({
+        const map = new Mapboxgl.Map({
                 container: mapElement.value, // container ID
-                style: "mapbox://styles/mapbox/streets-v11", // style URL
+                style: "mapbox://styles/mapbox/dark-v11", // style URL
                 center: userLocation.value, // starting position [lng, lat]
                 zoom: 15, // starting zoom
                 });
+
+        const myLocationPopup = new Mapboxgl.Popup()
+        .setLngLat(userLocation.value)
+        .setHTML('<h4>My Location</h4>');
+
+        const myLocationMarker = new Mapboxgl.Marker()
+        .setLngLat(userLocation.value)
+        .setPopup(myLocationPopup)
+        .addTo(map);
 
         }
         
