@@ -1,16 +1,22 @@
 import { createStore } from 'vuex';
 
-// My custom modules
+// places modules here
 import placesModule from './places';
 import { IPlacesState } from './places/state';
+
+// map modules here
+import mapModule from './map';
+import { IMapState } from './map/state';
 
 
 export interface IStateInterface {
   places: IPlacesState
+  map: IMapState
 }
 
 export default createStore<IStateInterface>({
   modules: {
-    places: placesModule
+    places: placesModule,
+    map: mapModule
   }
 })
