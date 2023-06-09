@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import SearchResults from '@/components/search-results/SearchResults.vue';
 
 export default defineComponent({
@@ -9,7 +9,26 @@ export default defineComponent({
   },
   setup() {
 
+    const debounceTimeout = ref();
+    const debounceValue = ref('');
+    
     return {
+      debouncedValue: debounceValue,
+
+      searchTerm: computed({
+        get(){
+          return debounceValue.value;
+        },
+        set( val: string ) {
+
+          if (debounceTimeout.value) clearTimeout(debounceTimeout.value);
+
+          debounceTimeout.value = setTimeout(() => {
+            debounceValue.value = val;
+          }, 500);
+        }
+      })
+
     };
   },
 });
@@ -17,7 +36,10 @@ export default defineComponent({
 
 <template>
     <div class="searchbar-container">
-        <input type="text" class="form-control" placeholder="Search for a place...">
+        <input type="text"
+               class="form-control"
+               placeholder="Search for a place..."
+               v-model="searchTerm">
         <SearchResults />
     </div>
 </template>

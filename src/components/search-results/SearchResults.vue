@@ -19,8 +19,8 @@ export default defineComponent({
     <h5>Site name</h5>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus sunt ab enim qui culpa placeat.</p>
     <div align="right">
-        <button class="btn btn-outline-primary">
-            Address
+        <button class="btn btn-outline-primary btn-sm">
+            Adresses
         </button>
     </div>
 </li>
@@ -29,8 +29,8 @@ export default defineComponent({
     <h5>Site name</h5>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus sunt ab enim qui culpa placeat.</p>
     <div align="right">
-        <button class="btn btn-outline-primary">
-            Address
+        <button class="btn btn-outline-primary btn-sm">
+            Adresses
         </button>
     </div>
 </li>
@@ -43,4 +43,13 @@ export default defineComponent({
 li {
     cursor: pointer;
 }
+
+h5 {
+    font-size: 1rem !important; 
+}
+
+p {
+    font-size: 0.7rem !important;
+}
+
 </style>
