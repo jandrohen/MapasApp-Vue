@@ -1,15 +1,29 @@
 <script lang="ts">
-import { usePlacesStore } from '@/composables';
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { useMapStore, usePlacesStore } from '@/composables';
+import { Feature } from '@/interfaces/places'
 
 export default defineComponent({
   name: 'SearchResults',
   setup() {
 
     const { isLoadingPlaces, places } = usePlacesStore();
+    const { map } = useMapStore();
+    const activePlace = ref('');
+    
     return {
         isLoadingPlaces,
         places,
+        activePlace,
+
+        onPlaceClicked: (place: Feature) => {
+            activePlace.value = place.id;
+            const [ lng, lat ] = place.center;
+            map.value?.flyTo({
+                center: [ lng, lat ],
+                zoom: 14
+            });
+        }
     };
   },
 });
@@ -26,14 +40,25 @@ export default defineComponent({
 <ul v-else-if="places.length > 0"
      class="list-group mt-3">
 
-<li v-for="place in places" :key="place.id" class="list-group-item list-group-item-action">
+<li v-for="place in places"
+    class="list-group-item list-group-item-action"
+    :class="{ active: activePlace === place.id }"
+    :key="place.id" 
+    @click="onPlaceClicked( place )">
+
     <h5>{{ place.text }}</h5>
+
     <p>{{ place.place_name }}</p>
+
     <div align="right">
-        <button class="btn btn-outline-primary btn-sm">
+        <button 
+            class="btn btn-outline-primary btn-sm"
+            :class="( place.id === activePlace ) ? 'btn-outline-light' : 'btn-outline-primary'"
+        >
             Adresses
         </button>
     </div>
+
 </li>
 
 </ul>
