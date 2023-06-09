@@ -14,7 +14,12 @@ const actions: ActionTree<IPlacesState, IStateInterface> = {
             }
         )
         
+    },
+    async searchPlacesByTerm( { commit, state }, query: string ) {
+        console.log('searchPlacesByTerm', query);
+        
     }
+
 }
 
 
