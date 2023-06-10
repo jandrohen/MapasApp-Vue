@@ -10,8 +10,8 @@ const actions: ActionTree<IMapState, IStateInterface> = {
    async getRouteBetweenPoints( { commit }, { start, end }: { start: LngLat; end: LngLat } ) {
        
         const resp = await directionsApi.get<IDirectionsResponse>(`/${ start.join(',') };${ end.join(',') }`);
-
-        console.log(resp.data.routes[0].geometry.coordinates);
+        
+        commit('setRoutePolyline', resp.data.routes[0].geometry.coordinates);
         
     }
 }
