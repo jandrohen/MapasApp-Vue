@@ -7,6 +7,15 @@ const mutation: MutationTree<IMapState> = {
     setMap( state, map: Mapboxgl.Map ) {
         state.map = map;
     },
+
+    setDistanceDuration( state, { distance, duration }: { distance: number, duration: number } ) {
+        let kms = distance / 1000;
+            kms = Math.round( kms * 100 ) / 100;
+
+            state.duration = kms;
+            state.distance = Math.floor( duration / 60 );
+    },
+
     setPlaceMarkers( state, places: Feature[] ) {
             
         // Remove previous markers
